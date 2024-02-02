@@ -50,9 +50,19 @@ const updateTravel = (travel, callback) => {
     });
 }
 
+const deleteTravel = (travel_id, callback) => {
+    pool.query(queries.removeTravel, [travel_id], (err, res) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, res.rows);
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
+    removeTravel: deleteTravel
 }

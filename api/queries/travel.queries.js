@@ -28,9 +28,12 @@ const updateTravel = "\
     where id = $6;\
 ";
 
+const deleteTravel = "delete from travel where id = $1;";
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
+    removeTravel: deleteTravel
 }

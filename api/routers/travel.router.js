@@ -143,5 +143,26 @@ router.post('/add/', controller.createTravel);
  */
 router.put('/put/', controller.updateTravel);
 
+/**
+ *  @swagger
+ * /travel/drop:
+ *   delete:
+ *      description: Delete a travel
+ *      tags:
+ *          - TRAVEL
+ *      parameters:
+ *          - in: query
+ *            name: id
+ *            type: number
+ *            required: true
+ *            description: Id of the travel
+ *      responses:
+ *          '200':
+ *              description: Results gotten successfully
+ *          '500':
+ *              description: Internal server error
+ */
+router.delete('/drop/', controller.removeTravel);
+
 
 module.exports = router;

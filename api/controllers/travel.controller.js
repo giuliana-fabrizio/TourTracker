@@ -47,9 +47,20 @@ const updateTravel = (req, res) => {
     });
 }
 
+const deleteTravel = (req, res) => {
+    const travel_id = req.query.id;
+    services.removeTravel(travel_id, (err, data) => {
+        if (err) {
+            return res.status(400).send({ error: err.message });
+        }
+        return res.status(201).send({ data: data });
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
+    removeTravel: deleteTravel
 }
