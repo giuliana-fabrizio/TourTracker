@@ -1,6 +1,6 @@
 # TourTracker
 
-## Présetation du projet
+## Présentation du projet
 Le but de cette application est de suivre tous ses déplacements au cours d'une année.
 L'utilisateur a la possibilité d'ajouter un lieu, de le modifier ou bien de le supprimer.
 
