@@ -58,10 +58,10 @@ create table travel (
 
 create table activity (
     id          serial,
-    label       varchar(30),
+    label       varchar(50),
     description text,
     phone       varchar(15),
-    place       varchar(50),
+    place       varchar(150),
     travel_id   int,
     constraint activity_pk primary key (id),
     constraint activity_travel
