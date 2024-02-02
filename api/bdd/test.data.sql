@@ -5,12 +5,12 @@ insert into client (firstname, name, email, gender, city_id) values
 ('Simone', 'Nguyen', 'simon.nguyen@edu.univ-fcomte.fr', 'Féminin', 28138);
 
 insert into travel (lifetime, comment, score, client_id, city_id) values
-(15, 'Ville exceptionnelle', 5, 1, 4420), -- Marseille // 3
-(10, 'Ville confortable, y fait bon vivre', 4.5, 1, 27116), -- Strasbourg // 4
-(20, 'Pleut tout le temps', 2, 2, 18557), -- Saint-Vaast-la-Hougue // 1
-(12, 'Ville magique !', 4.5, 2, 29900), -- Paris // 3
-(7, 'Endroit perdu', 3, 3, 8310), -- Nabirat // 1
-(5, 'Très bonne destination pour les vacances', 4, 4, 25521); -- Bayonne // 3
+(15, 'Ville exceptionnelle', 5, 1, 4420), -- Marseille
+(10, 'Ville confortable, y fait bon vivre', 4.5, 1, 27116), -- Strasbourg
+(20, 'Pleut tout le temps', 2, 2, 18557), -- Saint-Vaast-la-Hougue
+(12, 'Ville magique !', 4.5, 2, 29900), -- Paris
+(7, 'Endroit perdu', 3, 3, 8310), -- Nabirat
+(5, 'Très bonne destination pour les vacances', 4, 4, 25521); -- Bayonne
 
 insert into activity (label, description, phone, place, travel_id) values
 -- Activités pour Marseille
