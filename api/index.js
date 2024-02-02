@@ -1,12 +1,13 @@
+// utilisation des variables d'environnement
+const dotenv = require('dotenv');
+dotenv.config();
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require('dotenv');
 const express = require('express');
 
 const server = express();
-
-// utilisation des variables d'environnement
-dotenv.config();
 
 // utilisation des requetes CORS
 server.use(cors());
