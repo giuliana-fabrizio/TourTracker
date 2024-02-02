@@ -4,7 +4,6 @@ dotenv.config();
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dotenv = require('dotenv');
 const express = require('express');
 
 const server = express();
@@ -15,7 +14,7 @@ server.use(cors());
 // lancement du serveur
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use(express.static('assets'))
+server.use(express.static('assets'));
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
