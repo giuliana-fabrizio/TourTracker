@@ -10,6 +10,16 @@ const getAllTravel = (client_id, callback) => {
     });
 }
 
+const getOneTravel = (travel_id, callback) => {
+    pool.query(queries.getTravel, [travel_id], (err, res) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, res.rows);
+    });
+}
+
 module.exports = {
-    getTravels: getAllTravel
+    getTravels: getAllTravel,
+    getTravel: getOneTravel
 }
