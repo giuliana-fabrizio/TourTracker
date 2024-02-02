@@ -37,6 +37,7 @@ create table client (
     email       varchar(50),
     gender      varchar(10),
     city_id     int,
+    password    varchar(9),
     constraint client_pk primary key (id),
     constraint client_city
     foreign key (city_id) references city(id)
