@@ -1,8 +1,8 @@
 insert into client (firstname, name, email, gender, city_id) values
-('Jarod', 'Kohler', 'kohlerjarod2004@gmail.com', 'Masculin', 8607),
-('Mathéo', 'Girard', 'matheogigi28@gmail.com', 'Masculin', 10209),
-('Raphael', 'Dany', 'raphael.dany@edu.univ-fcomte.fr', 'Masculin', 27406),
-('Simone', 'Nguyen', 'simon.nguyen@edu.univ-fcomte.fr', 'Féminin', 28138);
+('Jarod', 'Kohler', 'kohlerjarod2004@gmail.com', 'Masculin', 8607, '123456789'),
+('Mathéo', 'Girard', 'matheogigi28@gmail.com', 'Masculin', 10209, '123456789'),
+('Raphael', 'Dany', 'raphael.dany@edu.univ-fcomte.fr', 'Masculin', 27406, '123456789'),
+('Simone', 'Nguyen', 'simon.nguyen@edu.univ-fcomte.fr', 'Féminin', 28138, '123456789');
 
 insert into travel (lifetime, comment, score, client_id, city_id) values
 (15, 'Ville exceptionnelle', 5, 1, 4420), -- Marseille
