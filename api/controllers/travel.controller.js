@@ -27,7 +27,18 @@ const getOneTravel = (req, res) => {
     });
 }
 
+const addTravel = (req, res) => {
+    const travel = req.body.travel;
+    services.createTravel(travel, (err, data) => {
+        if (err) {
+            return res.status(400).send({ error: err.message });
+        }
+        return res.status(201).send({ data: data });
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
-    getTravel: getOneTravel
+    getTravel: getOneTravel,
+    createTravel: addTravel,
 }

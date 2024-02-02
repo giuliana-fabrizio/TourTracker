@@ -19,7 +19,23 @@ const getOneTravel = (travel_id, callback) => {
     });
 }
 
+const addTravel = (travel, callback) => {
+    pool.query(queries.createTravel, [
+        travel.lifetime,
+        travel.comment,
+        travel.score,
+        travel.client_id,
+        travel.city_id
+    ], (err, res) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, res.rows);
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
-    getTravel: getOneTravel
+    getTravel: getOneTravel,
+    createTravel: addTravel,
 }

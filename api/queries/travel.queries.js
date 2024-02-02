@@ -16,7 +16,14 @@ const getOneTravel = "\
     where t.id = $1;\
 ";
 
+const addTravel = "\
+    insert into travel\
+    (lifetime, comment, score, client_id, city_id)\
+    values ($1, $2, $3, $4, $5);\
+";
+
 module.exports = {
     getTravels: getAllTravel,
-    getTravel: getOneTravel
+    getTravel: getOneTravel,
+    createTravel: addTravel,
 }
