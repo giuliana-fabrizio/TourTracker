@@ -22,8 +22,15 @@ const addTravel = "\
     values ($1, $2, $3, $4, $5);\
 ";
 
+const updateTravel = "\
+    update travel\
+    set lifetime = $1, comment = $2, score = $3, client_id = $4, city_id = $5\
+    where id = $6;\
+";
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
+    updateTravel: updateTravel,
 }

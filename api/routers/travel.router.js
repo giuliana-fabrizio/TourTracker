@@ -94,5 +94,54 @@ router.get('/details/', controller.getTravel);
  */
 router.post('/add/', controller.createTravel);
 
+/**
+ *  @swagger
+ *  /travel/put:
+ *    put:
+ *      tags:
+ *        - TRAVEL
+ *      description: Update a travel
+ *      parameters:
+ *        - in: body
+ *          name: travel
+ *          description: The new travel properties.
+ *          schema:
+ *            type: object
+ *            required:
+ *              - lifetime
+ *              - comment
+ *              - score
+ *              - client_id
+ *              - city_id
+ *              - id
+ *            properties:
+ *              lifetime:
+ *                type: number
+ *              comment:
+ *                type: string
+ *              score:
+ *                type: number
+ *              client_id:
+ *                type: number
+ *              city_id:
+ *                type: number
+ *              id:
+ *                type: number
+ *            example:
+ *              travel:
+ *                lifetime: 15
+ *                comment: "Tout est parfait !"
+ *                score: 5
+ *                client_id: 1
+ *                city_id: 4420
+ *                id: 3
+ *      responses:
+ *        '200':
+ *          description: Place created succeffuly
+ *        '500':
+ *          description: Internal server error
+ */
+router.put('/put/', controller.updateTravel);
+
 
 module.exports = router;

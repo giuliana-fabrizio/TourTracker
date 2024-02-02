@@ -34,8 +34,25 @@ const addTravel = (travel, callback) => {
     });
 }
 
+const updateTravel = (travel, callback) => {
+    pool.query(queries.updateTravel, [
+        travel.lifetime,
+        travel.comment,
+        travel.score,
+        travel.client_id,
+        travel.city_id,
+        travel.id
+    ], (err, res) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, res.rows);
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
+    updateTravel: updateTravel,
 }
