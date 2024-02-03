@@ -1,4 +1,4 @@
-insert into client (firstname, name, email, gender, city_id) values
+insert into client (firstname, name, email, gender, city_id, password) values
 ('Jarod', 'Kohler', 'kohlerjarod2004@gmail.com', 'Masculin', 8607, '123456789'),
 ('Mathéo', 'Girard', 'matheogigi28@gmail.com', 'Masculin', 10209, '123456789'),
 ('Raphael', 'Dany', 'raphael.dany@edu.univ-fcomte.fr', 'Masculin', 27406, '123456789'),
