@@ -1,0 +1,17 @@
+version: '1.0'
+
+services:
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    networks:
+      - tour-tracker
+    volumes:
+      - ./api:/api
+    ports:
+      - 5000:5000
+
+networks:
+  tour-tracker:
