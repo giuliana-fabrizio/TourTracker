@@ -8,7 +8,7 @@ const express = require('express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 
-const routerTravel = require('./routers/travel.router');
+const routerAuth = require('./routers/auth.router');
 
 const server = express();
 
@@ -41,7 +41,7 @@ const swaggerDocs = swaggerJsdoc(swaggerOption);
 server.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // redirection
-server.use('/travel', routerTravel);
+server.use('/auth', routerAuth);
 
 server.listen(process.env.PORT_SERVER, () => {
     console.log(`Server is listening port ${process.env.PORT_SERVER}`);
