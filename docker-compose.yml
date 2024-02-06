@@ -1,15 +1,32 @@
 version: '1.0'
 
 services:
+  db:
+    container_name: db
+    image: postgis/postgis
+    environment:
+      POSTGRES_DB: 'TourTrackerDB'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: '2711'
+    restart: always
+    networks:
+      - tour-tracker
+    volumes:
+      - ./api/bdd/script.sql:/docker-entrypoint-initdb.d/admittance.sql
+    ports:
+      - 5432:5432
+
   api:
     container_name: api
     build:
       context: ./api
       dockerfile: Dockerfile
+    depends_on:
+      - db
     networks:
       - tour-tracker
     volumes:
-      - ./api:/api
+      - ./api:/home/api
     ports:
       - 5000:5000
 
