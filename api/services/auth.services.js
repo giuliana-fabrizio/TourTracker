@@ -3,6 +3,14 @@ const { alreadyPresent } = require('../common_fields');
 const auth_queries = require('../queries/auth.queries');
 const client_queries = require('../queries/client.queries');
 
+/**
+ * Login.
+ * 
+ * @param {string} email - The email of the user.
+ * @param {string} password - The password of the user.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const signin = (email, password, callback) => {
     pool.query(auth_queries.signin, [email, password], (err, res) => {
         if (err) {
@@ -12,6 +20,13 @@ const signin = (email, password, callback) => {
     })
 }
 
+/**
+ * Signup.
+ * 
+ * @param {JSON} client - The attributes of the new user.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const signup = (client, callback) => {
     pool.query(client_queries.getuser, [client.email], (err, res) => {
         if (err) {
