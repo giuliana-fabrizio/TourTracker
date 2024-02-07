@@ -1,10 +1,10 @@
 const error = require('../common_fields');
 const services = require('../services/auth.services');
 
-const sigin = (req, res) => {
+const signin = (req, res) => {
     const email = req.query.email;
     const password = req.query.password;
-    services.sigin(email, password, (err, data) => {
+    services.signin(email, password, (err, data) => {
         if (err) {
             return res.status(500).send({ error: err.message });
         }
@@ -16,5 +16,5 @@ const sigin = (req, res) => {
 }
 
 module.exports = {
-    sigin: sigin
+    signin: signin,
 }

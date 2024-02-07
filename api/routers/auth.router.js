@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  *  @swagger
- *  /auth/sigin:
+ *  /auth/signin:
  *    get:
  *      tags:
  *        - AUTH
@@ -27,7 +27,7 @@ const router = express.Router();
  *        '500':
  *          description: Internal server error
  */
-router.get('/sigin', controller.sigin);
+router.get('/signin', controller.signin);
 
 router.post('/signup', () => {
     console.log("TODO")

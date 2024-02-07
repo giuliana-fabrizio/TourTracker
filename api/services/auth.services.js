@@ -1,8 +1,8 @@
 const pool = require('../bdd/db');
 const queries = require('../queries/auth.queries');
 
-const sigin = (email, password, callback) => {
-    pool.query(queries.sigin, [email, password], (err, res) => {
+const signin = (email, password, callback) => {
+    pool.query(auth_queries.signin, [email, password], (err, res) => {
         if (err) {
             return callback(err);
         }
@@ -11,5 +11,5 @@ const sigin = (email, password, callback) => {
 }
 
 module.exports = {
-    sigin: sigin
+    signin: signin,
 }
