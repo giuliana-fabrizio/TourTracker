@@ -15,6 +15,17 @@ const signin = (req, res) => {
     });
 }
 
+const signup = (req, res) => {
+    const client = req.body.client;
+    services.signup(client, (err, data) => {
+        if (err) {
+            return res.status(500).send({ error: err.message });
+        }
+        return res.status(200).send({ data: data });
+    });
+}
+
 module.exports = {
     signin: signin,
+    signup: signup
 }
