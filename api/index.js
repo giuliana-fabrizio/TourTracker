@@ -8,6 +8,7 @@ const express = require('express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 
+const routerAuth = require('./routers/auth.router');
 const routerTravel = require('./routers/travel.router');
 
 const server = express();
@@ -41,6 +42,7 @@ const swaggerDocs = swaggerJsdoc(swaggerOption);
 server.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // redirection
+server.use('/auth', routerAuth);
 server.use('/travel', routerTravel);
 
 server.listen(process.env.PORT_SERVER, () => {
