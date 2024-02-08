@@ -5,13 +5,14 @@ services:
     container_name: db
     image: postgis/postgis
     environment:
-      POSTGRES_DB: 'TourTrackerDB'
-      POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: '2711'
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     restart: always
     networks:
       - tour-tracker
     volumes:
+      - db_postgres_data:/var/lib/postgresql/data
       - ./api/bdd/script.sql:/docker-entrypoint-initdb.d/admittance.sql
     ports:
       - 5432:5432
@@ -32,3 +33,7 @@ services:
 
 networks:
   tour-tracker:
+    external: false
+
+volumes:
+  db_postgres_data:
