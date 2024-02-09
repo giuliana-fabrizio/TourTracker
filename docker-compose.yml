@@ -1,0 +1,42 @@
+version: '1.0'
+
+services:
+  db:
+    container_name: db
+    image: postgis/postgis
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: always
+    networks:
+      - tour-tracker
+    volumes:
+      - db_postgres_data:/var/lib/postgresql/data
+      - ./api/bdd/script.sql:/docker-entrypoint-initdb.d/admittance.sql
+      - ./api/bdd/regions.sql:/docker-entrypoint-initdb.d/area.sql
+      - ./api/bdd/departments.sql:/docker-entrypoint-initdb.d/departments.sql
+      - ./api/bdd/cities.sql:/docker-entrypoint-initdb.d/towns.sql
+    ports:
+      - 5432:5432
+
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    networks:
+      - tour-tracker
+    volumes:
+      - ./api:/home/api
+    ports:
+      - 5000:5000
+
+networks:
+  tour-tracker:
+    external: false
+
+volumes:
+  db_postgres_data:

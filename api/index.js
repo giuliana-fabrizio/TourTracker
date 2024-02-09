@@ -33,7 +33,7 @@ const swaggerOption = {
         info: {
             title: "API TourTracker",
             description: "API documentation",
-            servers: [`http://localhost:${process.env.PORT_SERVER}/`],
+            servers: [`http://${process.env.HOST_SERVER}:${process.env.PORT_SERVER}/`],
         },
     }),
     apis: ["index.js", "./routers/*.js"],
@@ -46,5 +46,6 @@ server.use('/auth', routerAuth);
 server.use('/travel', routerTravel);
 
 server.listen(process.env.PORT_SERVER, () => {
-    console.log(`Server is listening port ${process.env.PORT_SERVER}`);
+    console.log(`Server is listening port ${process.env.PORT_SERVER}
+        on host ${process.env.HOST_SERVER}`);
 });
