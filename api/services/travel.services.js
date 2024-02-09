@@ -1,6 +1,13 @@
 const pool = require('../bdd/db');
 const queries = require('../queries/travel.queries');
 
+/**
+ * Retrieves all travels associated with a user.
+ * 
+ * @param {number} client_id - The ID of the user.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const getAllTravel = (client_id, callback) => {
     pool.query(queries.getTravels, [client_id], (err, res) => {
         if (err) {
@@ -10,6 +17,13 @@ const getAllTravel = (client_id, callback) => {
     });
 }
 
+/**
+ * Retrieves details of a specific travel.
+ * 
+ * @param {number} travel_id - The ID of the travel.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const getOneTravel = (travel_id, callback) => {
     pool.query(queries.getTravel, [travel_id], (err, res) => {
         if (err) {
@@ -19,6 +33,13 @@ const getOneTravel = (travel_id, callback) => {
     });
 }
 
+/**
+ * Create a new travel.
+ * 
+ * @param {JSON} travel - The attributes of the new travel.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const addTravel = (travel, callback) => {
     pool.query(queries.createTravel, [
         travel.lifetime,
@@ -34,6 +55,13 @@ const addTravel = (travel, callback) => {
     });
 }
 
+/**
+ * Update a travel.
+ * 
+ * @param {JSON} travel - The travel to update.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const updateTravel = (travel, callback) => {
     pool.query(queries.updateTravel, [
         travel.lifetime,
@@ -50,6 +78,13 @@ const updateTravel = (travel, callback) => {
     });
 }
 
+/**
+ * Delete a travel.
+ * 
+ * @param {number} travel_id - The travel ID to delete.
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
 const deleteTravel = (travel_id, callback) => {
     pool.query(queries.removeTravel, [travel_id], (err, res) => {
         if (err) {
