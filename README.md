@@ -24,12 +24,36 @@ git@github.com:giuliana-fabrizio/TourTracker.git
 https://github.com/giuliana-fabrizio/TourTracker.git
 ```
 
-Créer un fichier .env à la racine du répertoire api.
+Créer un fichier .env à la racine du projet.
 Voici les informations du fichier :
 ```txt
+HOST_SERVER = point d'hébergement de l'application (local ou nom du conteneur Docker)
 PORT_SERVER = port sur lequel vous souhaitez héberger le serveur
 DB_NAME = le nom de votre base de données
 DB_PASSWORD = votre mot de passee
 DB_PORT = le port sur lequel tourne votre base de données
 DB_USER = votre identifiant
+```
+
+Pour lancer le projet, il vous faudra installer Docker ou NodeJS via les adresses suivantes :
+* Docker
+```txt
+https://docs.docker.com/engine/install/
+```
+* NodeJS
+```txt
+https://nodejs.org/
+```
+
+Ensuite, exécutez les commandes suivantes :
+* Docker
+```shell
+docker compose up   # lancer l'application
+docker compose down # arrêter l'application et supprimer les conteneurs Docker
+```
+* NodeJS
+```shell
+cd api/
+npm install # installer toutes les dépendances du projet
+npm start   # démarrer le projet
 ```
