@@ -23,8 +23,8 @@ function ListItemLink(props) {
 export default function Navigation() {
     return (
         <Drawer
-            variant="permanent"
-            anchor="left">
+            anchor="left"
+            variant="permanent">
             <Box sx={{ padding: 1 }}>
                 <List aria-label="main folders">
                     <ListItemLink to="/profile" primary="Profil" icon={<AccountBoxIcon />} />
