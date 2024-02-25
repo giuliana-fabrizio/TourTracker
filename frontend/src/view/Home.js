@@ -45,8 +45,9 @@ export default function Home() {
             style={{ height: "100vh" }}
             mapStyle={mapStyle}
         >
-            {coords.map(coord => (
+            {coords.map((coord, index) => (
                 <Marker
+                    key={index}
                     latitude={coord.latitude}
                     longitude={coord.longitude}
                     style={{ cursor: "pointer" }}
