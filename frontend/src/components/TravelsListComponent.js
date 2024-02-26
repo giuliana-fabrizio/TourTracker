@@ -20,10 +20,12 @@ import PlusOneIcon from '@mui/icons-material/PlusOne';
 import SortIcon from '@mui/icons-material/Sort';
 import StarIcon from '@mui/icons-material/Star';
 import { useEffect, React, useState } from "react";
+import Filters from './FiltersComponent';
 
 const baseURL = `http://localhost:5000`;
 
 export default function TravelsList() {
+    const [addFilters, setAddFilters] = useState(false);
     const [travels, setTravels] = useState([]);
 
     const theme = useTheme();
@@ -56,6 +58,7 @@ export default function TravelsList() {
                     endIcon={<SortIcon />}
                     size="small"
                     variant='contained'
+                    onClick={() => setAddFilters(!addFilters)}
                     sx={{
                         bgcolor: '#ffffff',
                         border: 2,
@@ -100,6 +103,7 @@ export default function TravelsList() {
                     Télécharger
                 </Button>
             </Stack>
+            {addFilters && <Filters />}
             <Grid container spacing={2}>
                 {travels.map((travel, index) => (
                     <Grid item key={index} xs={isMobile ? 12 : 4}>
