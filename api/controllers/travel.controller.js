@@ -57,10 +57,30 @@ const deleteTravel = (req, res) => {
     });
 }
 
+const getAllDepartments = (_, res) => {
+    services.getDepartments((err, data) => {
+        if (err) {
+            return res.status(500).send({ error: err.message });
+        }
+        return res.status(200).send({ data: data });
+    });
+}
+
+const getAllRegions = (_, res) => {
+    services.getRegions((err, data) => {
+        if (err) {
+            return res.status(500).send({ error: err.message });
+        }
+        return res.status(200).send({ data: data });
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
-    removeTravel: deleteTravel
+    removeTravel: deleteTravel,
+    getDepartments: getAllDepartments,
+    getRegions: getAllRegions
 }

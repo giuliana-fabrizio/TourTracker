@@ -94,10 +94,42 @@ const deleteTravel = (travel_id, callback) => {
     });
 }
 
+/**
+ * Retrieves all travels associated with a user.
+ * 
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
+const getAllDepartments = (callback) => {
+    pool.query(queries.getDepartments, (err, res) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, res.rows);
+    });
+}
+
+/**
+ * Retrieves all travels associated with a user.
+ * 
+ * @param {function(error: Error, result: any)} callback - The callback function.
+ * @return {Promise} - A Promise object.
+ */
+const getAllRegions = (callback) => {
+    pool.query(queries.getRegions, (err, res) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, res.rows);
+    });
+}
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
-    removeTravel: deleteTravel
+    removeTravel: deleteTravel,
+    getDepartments: getAllDepartments,
+    getRegions: getAllRegions
 }

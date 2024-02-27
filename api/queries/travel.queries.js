@@ -1,7 +1,8 @@
 const getAllTravel = "\
-    select c.id, c.label, t.comment, t.id, t.lifetime, t.score\
+    select c.id, c.department_id, c.label, d.region_id, t.comment, t.id, t.lifetime, t.score\
     from travel as t\
     left join city as c on c.id = t.city_id\
+    inner join department as d on d.id = c.department_id\
     where t.client_id = $1;\
 ";
 
@@ -29,10 +30,16 @@ const updateTravel = "\
 
 const deleteTravel = "delete from travel where id = $1;";
 
+const getAllDepartments = "select * from department order by label asc;";
+
+const getAllRegions = "select * from region order by label asc;";
+
 module.exports = {
     getTravels: getAllTravel,
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
-    removeTravel: deleteTravel
+    removeTravel: deleteTravel,
+    getDepartments: getAllDepartments,
+    getRegions: getAllRegions
 }

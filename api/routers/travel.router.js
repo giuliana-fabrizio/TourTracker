@@ -164,5 +164,35 @@ router.put('/put/', controller.updateTravel);
  */
 router.delete('/drop/', controller.removeTravel);
 
+/**
+ *  @swagger
+ * /travel/departments:
+ *   get:
+ *      description: Get all departments
+ *      tags:
+ *          - TRAVEL
+ *      responses:
+ *          '200':
+ *              description: Results gotten successfully
+ *          '500':
+ *              description: Internal server error
+ */
+router.get('/departments', controller.getDepartments);
+
+/**
+ *  @swagger
+ * /travel/regions:
+ *   get:
+ *      description: Get all regions
+ *      tags:
+ *          - TRAVEL
+ *      responses:
+ *          '200':
+ *              description: Results gotten successfully
+ *          '500':
+ *              description: Internal server error
+ */
+router.get('/regions', controller.getRegions);
+
 
 module.exports = router;
