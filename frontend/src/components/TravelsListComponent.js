@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseURL } from '../app.config';
+import { differenceInDays } from 'date-fns';
 import {
     Avatar,
     Button,
@@ -154,7 +155,7 @@ export default function TravelsList() {
                                     color="text.secondary"
                                     variant="body1"
                                 >
-                                    Durée : {travel.lifetime} jours
+                                    Durée : {-differenceInDays(travel.start_date, travel.end_date)} jours
                                 </Typography>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography
