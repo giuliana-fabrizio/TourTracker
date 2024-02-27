@@ -64,6 +64,9 @@ export default function Filters(props) {
                         type="date"
                         value={startDate}
                         onChange={event => setStartDate(event.target.value)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                         sx={{ width: '100%' }}
                     />
                 </Grid>
@@ -73,6 +76,9 @@ export default function Filters(props) {
                         type="date"
                         value={endDate}
                         onChange={event => setEndDate(event.target.value)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                         sx={{ width: '100%' }}
                     />
                 </Grid>
