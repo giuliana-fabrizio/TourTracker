@@ -9,6 +9,9 @@ import SelectFilter from "./SelectFilterComponent";
 export default function Filters(props) {
     const { applyFilters } = props;
 
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+
     const [departments, setDepartments] = useState([]);
     const [departmentsSelected, setDepartmentsSelected] = useState([]);
 
@@ -21,15 +24,17 @@ export default function Filters(props) {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     const submitFilters = () => {
-        applyFilters(departmentsSelected, areasSelected, score);
+        applyFilters(startDate, endDate, departmentsSelected, areasSelected, score);
     }
 
     const resetFilters = () => {
+        setStartDate("");
+        setEndDate("");
         setDepartmentsSelected([]);
         setAreasSelected([]);
         setScore(-1);
 
-        applyFilters([], [], -1);
+        applyFilters("", "", [], [], -1);
     }
 
     useEffect(() => {
@@ -53,6 +58,24 @@ export default function Filters(props) {
             }}
         >
             <Grid container spacing={1}>
+                <Grid item xs={isMobile ? 12 : 6}>
+                    <TextField
+                        label="Date de début"
+                        type="date"
+                        value={startDate}
+                        onChange={event => setStartDate(event.target.value)}
+                        sx={{ width: '100%' }}
+                    />
+                </Grid>
+                <Grid item xs={isMobile ? 12 : 6}>
+                    <TextField
+                        label="Date de fin"
+                        type="date"
+                        value={endDate}
+                        onChange={event => setEndDate(event.target.value)}
+                        sx={{ width: '100%' }}
+                    />
+                </Grid>
                 <Grid item xs={isMobile ? 12 : 6}>
                     <SelectFilter
                         label="Départements"

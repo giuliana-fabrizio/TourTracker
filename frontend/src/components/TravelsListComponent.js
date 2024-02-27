@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseURL } from '../app.config';
-import { differenceInDays } from 'date-fns';
+import { differenceInDays, format } from 'date-fns';
 import {
     Avatar,
     Button,
@@ -37,6 +37,23 @@ export default function TravelsList() {
         return travels.filter(travel => travel.score === score);
     }
 
+    const filterBasedOnDate = (filteredTravels, startDate, endDate) => {
+        if (startDate === "" && endDate === "") return filteredTravels;
+
+        startDate = startDate ? format(new Date(startDate), "yyyy-MM-dd") : false;
+        endDate = endDate ? format(new Date(endDate), "yyyy-MM-dd") : false;
+
+        return filteredTravels.filter(travel => {
+            const start_date = startDate ? format(new Date(travel.start_date), "yyyy-MM-dd") : false;
+            const end_date = endDate ? format(new Date(travel.end_date), "yyyy-MM-dd") : false;
+
+            if (startDate && endDate) {
+                return (end_date <= endDate) && (start_date >= startDate);
+            }
+            return endDate ? (end_date <= endDate) : (start_date >= startDate);
+        });
+    }
+
     const filterBasedOnRegions = (filteredTravels, regions) => {
         if (regions.length === 0) return filteredTravels;
         return filteredTravels.filter(travel => regions.includes(travel.region_id));
@@ -47,8 +64,9 @@ export default function TravelsList() {
         return filteredTravels.filter(travel => departments.includes(travel.department_id));
     }
 
-    const applyFilters = (departments, regions, score) => {
+    const applyFilters = (startDate, endDate, departments, regions, score) => {
         let filteredTravels = filterBasedOnScore(score);
+        filteredTravels = filterBasedOnDate(filteredTravels, startDate, endDate);
         filteredTravels = filterBasedOnRegions(filteredTravels, regions);
         filteredTravels = filterBasedOnDepartments(filteredTravels, departments);
         setTravelsDisplayed(filteredTravels);
