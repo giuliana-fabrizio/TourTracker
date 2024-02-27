@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { baseURL } from '../app.config';
 import {
     Avatar,
     Button,
@@ -22,20 +23,41 @@ import StarIcon from '@mui/icons-material/Star';
 import { useEffect, React, useState } from "react";
 import Filters from './FiltersComponent';
 
-const baseURL = `http://localhost:5000`;
-
 export default function TravelsList() {
     const [addFilters, setAddFilters] = useState(false);
     const [travels, setTravels] = useState([]);
+    const [travelsDisplayed, setTravelsDisplayed] = useState([]);
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+    const filterBasedOnScore = (score) => {
+        if (score === -1) return travels;
+        return travels.filter(travel => travel.score === score);
+    }
+
+    const filterBasedOnRegions = (filteredTravels, regions) => {
+        if (regions.length === 0) return filteredTravels;
+        return filteredTravels.filter(travel => regions.includes(travel.region_id));
+    }
+
+    const filterBasedOnDepartments = (filteredTravels, departments) => {
+        if (departments.length === 0) return filteredTravels;
+        return filteredTravels.filter(travel => departments.includes(travel.department_id));
+    }
+
+    const applyFilters = (departments, regions, score) => {
+        let filteredTravels = filterBasedOnScore(score);
+        filteredTravels = filterBasedOnRegions(filteredTravels, regions);
+        filteredTravels = filterBasedOnDepartments(filteredTravels, departments);
+        setTravelsDisplayed(filteredTravels);
+    }
 
     useEffect(() => {
         (async () => {
             const resp_travels = await axios.get(`${baseURL}/travel/?id=1`);
             setTravels(resp_travels.data.data);
+            setTravelsDisplayed(resp_travels.data.data);
         })();
     }, []);
 
@@ -103,9 +125,11 @@ export default function TravelsList() {
                     Télécharger
                 </Button>
             </Stack>
-            {addFilters && <Filters />}
+
+            {addFilters && <Filters applyFilters={applyFilters} />}
+
             <Grid container spacing={2}>
-                {travels.map((travel, index) => (
+                {travelsDisplayed.map((travel, index) => (
                     <Grid item key={index} xs={isMobile ? 12 : 4}>
                         <Card
                             sx={{

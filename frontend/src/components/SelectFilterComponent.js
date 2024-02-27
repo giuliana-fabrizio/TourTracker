@@ -15,8 +15,8 @@ export default function SelectFilter(props) {
                 >
                     {values
                         .map(value => (
-                            <MenuItem key={value} value={value}>
-                                {value}
+                            <MenuItem key={value.id} value={value.id}>
+                                {value.label}
                             </MenuItem>
                         ))}
                 </Select>

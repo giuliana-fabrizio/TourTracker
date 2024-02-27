@@ -1,12 +1,13 @@
+import axios from 'axios';
+import { baseURL } from "../app.config";
 import { Button, Grid, Stack, TextField, useMediaQuery, useTheme } from "@mui/material";
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useEffect, useState } from "react";
 import SelectFilter from "./SelectFilterComponent";
 
-export default function Filters() {
-    const [cities, setCities] = useState([]);
-    const [citiesSelected, setCitiesSelected] = useState([]);
+export default function Filters(props) {
+    const { applyFilters } = props;
 
     const [departments, setDepartments] = useState([]);
     const [departmentsSelected, setDepartmentsSelected] = useState([]);
@@ -14,12 +15,32 @@ export default function Filters() {
     const [areas, setAreas] = useState([]);
     const [areasSelected, setAreasSelected] = useState([]);
 
-    const [score, setScore] = useState();
+    const [score, setScore] = useState(-1);
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-    useEffect(() => { }, []);
+    const submitFilters = () => {
+        applyFilters(departmentsSelected, areasSelected, score);
+    }
+
+    const resetFilters = () => {
+        setDepartmentsSelected([]);
+        setAreasSelected([]);
+        setScore(-1);
+
+        applyFilters([], [], -1);
+    }
+
+    useEffect(() => {
+        (async () => {
+            const resp_departments = await axios.get(`${baseURL}/travel/departments`);
+            setDepartments(resp_departments.data.data);
+
+            const resp_areas = await axios.get(`${baseURL}/travel/regions`);
+            setAreas(resp_areas.data.data)
+        })();
+    }, []);
 
     return (
         <Stack
@@ -32,14 +53,6 @@ export default function Filters() {
             }}
         >
             <Grid container spacing={1}>
-                <Grid item xs={isMobile ? 12 : 6}>
-                    <SelectFilter
-                        label="Villes"
-                        selectedValues={citiesSelected}
-                        setSelectedValues={setCitiesSelected}
-                        values={cities}
-                    />
-                </Grid>
                 <Grid item xs={isMobile ? 12 : 6}>
                     <SelectFilter
                         label="Départements"
@@ -72,6 +85,7 @@ export default function Filters() {
                     endIcon={<ChecklistIcon />}
                     size="small"
                     variant='contained'
+                    onClick={submitFilters}
                     sx={{
                         bgcolor: '#ffffff',
                         border: 2,
@@ -88,6 +102,7 @@ export default function Filters() {
                     endIcon={<ClearIcon />}
                     size="small"
                     variant='contained'
+                    onClick={resetFilters}
                     sx={{
                         bgcolor: '#ffffff',
                         border: 2,
