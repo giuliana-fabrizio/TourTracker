@@ -45,7 +45,8 @@ create table client (
 
 create table travel (
     id          serial,
-    lifetime    decimal(8, 2),
+    start_date  date,
+    end_date    date,
     comment     text,
     score       int,
     client_id   int,
