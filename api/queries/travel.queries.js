@@ -1,8 +1,9 @@
 const getAllTravel = "\
-    select a.label, c.id, c.label, t.lifetime, t.score\
+    select c.id, c.department_id, c.label, d.region_id,\
+    t.comment, t.id, t.start_date, t.end_date, t.score\
     from travel as t\
-    left join activity as a on a.travel_id = t.id\
     left join city as c on c.id = t.city_id\
+    inner join department as d on d.id = c.department_id\
     where t.client_id = $1;\
 ";
 
