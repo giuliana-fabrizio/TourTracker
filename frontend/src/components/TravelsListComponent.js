@@ -16,6 +16,7 @@ import {
     useTheme
 } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DownloadIcon from '@mui/icons-material/Download';
 import PlusOneIcon from '@mui/icons-material/PlusOne';
@@ -155,6 +156,24 @@ export default function TravelsList() {
             </Stack>
 
             {addFilters && <Filters applyFilters={applyFilters} />}
+
+            {travelsDisplayed.length === 0 && (
+                <Stack direction={'column'}>
+                    <Typography variant="h6" sx={{ mb: 1, ml: 1 }}>
+                        Pas encore de voyages réalisés.
+                    </Typography>
+                    <Button
+                        size="small"
+                        startIcon={<AddPhotoAlternateIcon />}
+                        sx={{
+                            color: '#084da1',
+                            width: 250,
+                        }}
+                    >
+                        Créer mon premier voyage
+                    </Button>
+                </Stack>
+            )}
 
             <Grid container spacing={2}>
                 {travelsDisplayed.map((travel, index) => (
