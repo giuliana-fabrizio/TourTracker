@@ -42,7 +42,8 @@ const getOneTravel = (travel_id, callback) => {
  */
 const addTravel = (travel, callback) => {
     pool.query(queries.createTravel, [
-        travel.lifetime,
+        travel.start_date,
+        travel.end_date,
         travel.comment,
         travel.score,
         travel.client_id,
@@ -64,7 +65,8 @@ const addTravel = (travel, callback) => {
  */
 const updateTravel = (travel, callback) => {
     pool.query(queries.updateTravel, [
-        travel.lifetime,
+        travel.start_date,
+        travel.end_date,
         travel.comment,
         travel.score,
         travel.client_id,
@@ -86,11 +88,16 @@ const updateTravel = (travel, callback) => {
  * @return {Promise} - A Promise object.
  */
 const deleteTravel = (travel_id, callback) => {
-    pool.query(queries.removeTravel, [travel_id], (err, res) => {
+    pool.query(queries.removeActivities, [travel_id], (err, res) => {
         if (err) {
             return callback(err);
         }
-        return callback(null, res.rows);
+        pool.query(queries.removeTravel, [travel_id], (err, res) => {
+            if (err) {
+                return callback(err);
+            }
+            return callback(null, res.rows);
+        });
     });
 }
 

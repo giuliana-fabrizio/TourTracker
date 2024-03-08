@@ -51,7 +51,7 @@ router.get('/details/', controller.getTravel);
 
 /**
  *  @swagger
- *  /travel/add:
+ *  /travel:
  *    post:
  *      tags:
  *        - TRAVEL
@@ -63,14 +63,17 @@ router.get('/details/', controller.getTravel);
  *          schema:
  *            type: object
  *            required:
- *              - lifetime
+ *              - start_date
+ *              - end_date
  *              - comment
  *              - score
  *              - client_id
  *              - city_id
  *            properties:
- *              lifetime:
- *                type: number
+ *              start_date:
+ *                type: string
+ *              end_date:
+ *                type: string
  *              comment:
  *                type: string
  *              score:
@@ -81,7 +84,8 @@ router.get('/details/', controller.getTravel);
  *                type: number
  *            example:
  *              travel:
- *                lifetime: 15
+ *                start_date: "2022-05-08"
+ *                end_date: "2022-05-25"
  *                comment: "Ville au top, rien à redire, tout est parfait !"
  *                score: 5
  *                client_id: 1
@@ -92,11 +96,11 @@ router.get('/details/', controller.getTravel);
  *        '500':
  *          description: Internal server error
  */
-router.post('/add/', controller.createTravel);
+router.post('/', controller.createTravel);
 
 /**
  *  @swagger
- *  /travel/put:
+ *  /travel:
  *    put:
  *      tags:
  *        - TRAVEL
@@ -108,15 +112,18 @@ router.post('/add/', controller.createTravel);
  *          schema:
  *            type: object
  *            required:
- *              - lifetime
+ *              - start_date
+ *              - end_date
  *              - comment
  *              - score
  *              - client_id
  *              - city_id
  *              - id
  *            properties:
- *              lifetime:
- *                type: number
+ *              start_date:
+ *                type: string
+ *              end_date:
+ *                type: string
  *              comment:
  *                type: string
  *              score:
@@ -129,7 +136,8 @@ router.post('/add/', controller.createTravel);
  *                type: number
  *            example:
  *              travel:
- *                lifetime: 15
+ *                start_date: "2022-05-08"
+ *                end_date: "2022-05-25"
  *                comment: "Tout est parfait !"
  *                score: 5
  *                client_id: 1
@@ -141,11 +149,11 @@ router.post('/add/', controller.createTravel);
  *        '500':
  *          description: Internal server error
  */
-router.put('/put/', controller.updateTravel);
+router.put('/', controller.updateTravel);
 
 /**
  *  @swagger
- * /travel/drop:
+ * /travel:
  *   delete:
  *      description: Delete a travel
  *      tags:
@@ -162,7 +170,7 @@ router.put('/put/', controller.updateTravel);
  *          '500':
  *              description: Internal server error
  */
-router.delete('/drop/', controller.removeTravel);
+router.delete('/', controller.removeTravel);
 
 /**
  *  @swagger

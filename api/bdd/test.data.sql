@@ -4,7 +4,7 @@ insert into client (firstname, name, email, gender, city_id, password) values
 ('Raphael', 'Dany', 'raphael.dany@edu.univ-fcomte.fr', 'Masculin', 27406, '123456789'),
 ('Simone', 'Nguyen', 'simon.nguyen@edu.univ-fcomte.fr', 'Féminin', 28138, '123456789');
 
-insert into travel (lifetime, comment, score, client_id, city_id) values
+insert into travel (start_date, end_date, comment, score, client_id, city_id) values
 ('2023-09-22', '2023-10-08', 'Ville exceptionnelle', 5, 1, 4420), -- Marseille
 ('2022-06-15', '2023-06-30', 'Ville confortable, y fait bon vivre', 4.5, 1, 27116), -- Strasbourg
 ('2024-01-07', '2023-01-15', 'Pleut tout le temps', 2, 2, 18557), -- Saint-Vaast-la-Hougue
