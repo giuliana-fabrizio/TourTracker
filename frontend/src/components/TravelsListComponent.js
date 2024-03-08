@@ -72,11 +72,20 @@ export default function TravelsList() {
         setTravelsDisplayed(filteredTravels);
     }
 
+    const deleteTravel = async (id) => {
+        await axios.delete(`${baseURL}/travel/?id=${id}`);
+        window.location.reload();
+    }
+
     useEffect(() => {
         (async () => {
-            const resp_travels = await axios.get(`${baseURL}/travel/?id=1`);
-            setTravels(resp_travels.data.data);
-            setTravelsDisplayed(resp_travels.data.data);
+            try {
+                const resp_travels = await axios.get(`${baseURL}/travel/?id=1`);
+                setTravels(resp_travels.data.data);
+                setTravelsDisplayed(resp_travels.data.data);
+            } catch (e) {
+                console.error(e.response.data.error);
+            }
         })();
     }, []);
 
@@ -193,11 +202,15 @@ export default function TravelsList() {
                             <CardActions sx={{ justifyContent: 'flex-end', padding: 0 }}>
                                 <IconButton
                                     title="Supprimer définitivement"
+                                    onClick={() => deleteTravel(travel.id)}
                                     sx={{ color: '#7f0d00' }}
                                 >
                                     <DeleteForeverIcon />
                                 </IconButton>
-                                <IconButton title="Plus d'informations" sx={{ color: '#108272' }}>
+                                <IconButton
+                                    title="Plus d'informations"
+                                    sx={{ color: '#108272' }}
+                                >
                                     <AddIcon />
                                 </IconButton>
                             </CardActions>
