@@ -1,8 +1,9 @@
 const getAllTravel = "\
-    select a.label, c.id, c.label, t.lifetime, t.score\
+    select c.id, c.department_id, c.label, d.region_id,\
+    t.comment, t.id, t.start_date, t.end_date, t.score\
     from travel as t\
-    left join activity as a on a.travel_id = t.id\
     left join city as c on c.id = t.city_id\
+    inner join department as d on d.id = c.department_id\
     where t.client_id = $1;\
 ";
 
@@ -18,15 +19,17 @@ const getOneTravel = "\
 
 const addTravel = "\
     insert into travel\
-    (lifetime, comment, score, client_id, city_id)\
-    values ($1, $2, $3, $4, $5);\
+    (start_date, end_date, comment, score, client_id, city_id)\
+    values ($1, $2, $3, $4, $5, $6);\
 ";
 
 const updateTravel = "\
     update travel\
-    set lifetime = $1, comment = $2, score = $3, client_id = $4, city_id = $5\
-    where id = $6;\
+    set start_date = $1, end_date = $2, comment = $3, score = $4, client_id = $5, city_id = $6\
+    where id = $7;\
 ";
+
+const deleteActivities = "delete from activity where travel_id = $1;";
 
 const deleteTravel = "delete from travel where id = $1;";
 
@@ -35,5 +38,6 @@ module.exports = {
     getTravel: getOneTravel,
     createTravel: addTravel,
     updateTravel: updateTravel,
-    removeTravel: deleteTravel
+    removeTravel: deleteTravel,
+    removeActivities: deleteActivities
 }
